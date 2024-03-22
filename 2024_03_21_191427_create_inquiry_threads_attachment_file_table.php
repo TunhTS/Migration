@@ -14,12 +14,12 @@ class CreateInquiryThreadsAttachmentFileTable extends Migration
     public function up()
     {
         Schema::create('inquiry_threads_attachment_file', function (Blueprint $table) {
-            $table->bigIncrements('inquiry_threads_attachment_file_id')->comment('AUTO_INCREMENT');
+            $table->unsignedInteger('inquiry_threads_attachment_file_id')->autoIncrement();
             $table->unsignedSmallInteger('inquiry_threads_id');
             $table->string('attachment_file_name', 255);
             $table->string('attachment_file_path', 255)->comment('S3へのパス');
-            $table->unsignedBigInteger('creater_id')->nullable()->comment('投稿者から返信の場合はNull');
-            $table->dateTime('created_at')->useCurrent();
+            $table->unsignedSmallInteger('creater_id')->nullable()->comment('投稿者から返信の場合はNull');
+            $table->dateTime('created_at');
             $table->unsignedBigInteger('last_update_operation_log_id')->nullable();
         });
     }
